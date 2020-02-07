@@ -31,7 +31,113 @@
         <!-- Google Fonts -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
         <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800,700italic' rel='stylesheet' type='text/css'>
+        <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800,700italic' rel='stylesheet' type='text/css'>
+        <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
+        <script async src="./js/prebid2.44.6.js"></script>
+        <script>
+            var div_1_sizes = [
+                [300, 250]
+            ];
+            var PREBID_TIMEOUT = 1000;
+            var FAILSAFE_TIMEOUT = 3000;
+            var dhParams = {
+                partnerId: "pb-partnerId",
+            };
+    
+            var adUnits = [
+            {
+                code: '/83414793/prebid_test_display',
+                sizes: [[300, 250], [320, 50]],
+                mediaTypes: {
+                    banner : {
+                        sizes: [[300, 250], [320, 50]],
+                    }
+                },
+                bids: [
+                    {
+                        bidder: 'dailyhunt',
+                        params: {
+                          partnerId: 'pb-partnerId'
+                        }
+                    }
+                ]
+            },
+            {
+                code: '/83414793/prebid_test_native',
+                sizes: [[300, 250]],
+                mediaTypes: {
+                    native: {
+                        title: {
+                            required: true
+                        },
+                        body: {
+                            required: true
+                        },
+                        image: {
+                            required: true
+                        },
+                        cta: {
+                            required: true
+                        }
+                    }
+                },
+                bids: [
+                    {
+                        bidder: 'dailyhunt',
+                        params: {
+                          partnerId: 'pb-partnerId'
+                        }
+                    }
+                ]
+            }
+        ];
+    
+            // ======== DO NOT EDIT BELOW THIS LINE =========== //
+            var googletag = googletag || {};
+            googletag.cmd = googletag.cmd || [];
+            googletag.cmd.push(function () {
+                googletag.pubads().disableInitialLoad();
+            });
+    
+            var pbjs = pbjs || {};
+            pbjs.que = pbjs.que || [];
+    
+            pbjs.que.push(function () {
+                pbjs.addAdUnits(adUnits);
+                pbjs.requestBids({
+                    bidsBackHandler: initAdserver,
+                    timeout: PREBID_TIMEOUT
+                });
+            });
+    
+            function initAdserver() {
+                if (pbjs.initAdserverSet) return;
+                pbjs.initAdserverSet = true;
+                googletag.cmd.push(function () {
+                    pbjs.que.push(function () {
+                        pbjs.setTargetingForGPTAsync();
+                        googletag.pubads().refresh();
+                    });
+                });
+            }
+            // in case PBJS doesn't load
+            setTimeout(function () {
+                initAdserver();
+            }, FAILSAFE_TIMEOUT);
+    
+            googletag.cmd.push(function () {					
+                googletag.defineSlot('/83414793/prebid_test_display', div_1_sizes, 'div-1').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+    
+            googletag.cmd.push(function () {					
+                googletag.defineSlot('/83414793/prebid_test_native', div_1_sizes, 'div-2').addService(googletag.pubads());
+                googletag.pubads().enableSingleRequest();
+                googletag.enableServices();
+            });
+    
+        </script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
           <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
@@ -169,6 +275,43 @@
             </div>
         </section>
         <!-- end About section -->
+
+        <!-- ADS -->
+        <section id="about">
+            <div class="about-background">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-9 col-sm-offset-3 aboutWrapper">
+                            <!-- Section Title -->
+                            <div class="section-title">
+                                <h2>ADS</h2>
+                                <h2>Basic Display Prebid.js Example</h2>
+	                            <h5>Div-1</h5>
+                                <div id='div-1' style="text-align: center">
+                                    <script type='text/javascript'>
+                                        googletag.cmd.push(function () {
+                                            googletag.display('div-1');
+                                        });
+
+                                    </script>
+                                </div>
+
+                                <h2>Basic Native Prebid.js Example</h2>
+                                <h5>Div-2</h5>
+                                <div id='div-2' style="text-align: center">
+                                <script type='text/javascript'>
+                                    googletag.cmd.push(function () {
+                                        googletag.display('div-2');
+                                    });
+
+                                </script>
+                                </div>
+							</div><!-- end Section Title -->
+                    </div><!-- end row -->
+                </div><!-- end container -->
+            </div>
+        </section>
+        <!-- END ADS -->
 
         <!-- Portfolio section -->
         <section id="portfolio">
