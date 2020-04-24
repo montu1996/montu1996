@@ -33,110 +33,22 @@
         <link href='https://fonts.googleapis.com/css?family=Titillium+Web:400,200,200italic,300,300italic,400italic,600,600italic,700' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,800,700italic' rel='stylesheet' type='text/css'>
         <script async src="//www.googletagservices.com/tag/js/gpt.js"></script>
-        <script async src="./js/prebid2.44.6.js"></script>
         <script>
-            var div_1_sizes = [
-                [300, 250]
-            ];
-            var PREBID_TIMEOUT = 1000;
-            var FAILSAFE_TIMEOUT = 3000;
-            var dhParams = {
-                partnerId: "pb-partnerId",
-            };
-    
-            var adUnits = [
-            {
-                code: '/83414793/prebid_test_display',
-                sizes: [[300, 250], [320, 50]],
-                mediaTypes: {
-                    banner : {
-                        sizes: [[300, 250], [320, 50]],
-                    }
-                },
-                bids: [
-                    {
-                        bidder: 'dailyhunt',
-                        params: {
-                          partnerId: 'pb-partnerId'
-                        }
-                    }
-                ]
-            },
-            {
-                code: '/83414793/prebid_test_native',
-                sizes: [[300, 250]],
-                mediaTypes: {
-                    native: {
-                        title: {
-                            required: true
-                        },
-                        body: {
-                            required: true
-                        },
-                        image: {
-                            required: true
-                        },
-                        cta: {
-                            required: true
-                        }
-                    }
-                },
-                bids: [
-                    {
-                        bidder: 'dailyhunt',
-                        params: {
-                          partnerId: 'pb-partnerId'
-                        }
-                    }
-                ]
-            }
-        ];
-    
-            // ======== DO NOT EDIT BELOW THIS LINE =========== //
-            var googletag = googletag || {};
-            googletag.cmd = googletag.cmd || [];
-            googletag.cmd.push(function () {
-                googletag.pubads().disableInitialLoad();
-            });
-    
-            var pbjs = pbjs || {};
-            pbjs.que = pbjs.que || [];
-    
-            pbjs.que.push(function () {
-                pbjs.addAdUnits(adUnits);
-                pbjs.requestBids({
-                    bidsBackHandler: initAdserver,
-                    timeout: PREBID_TIMEOUT
-                });
-            });
-    
-            function initAdserver() {
-                if (pbjs.initAdserverSet) return;
-                pbjs.initAdserverSet = true;
-                googletag.cmd.push(function () {
-                    pbjs.que.push(function () {
-                        pbjs.setTargetingForGPTAsync();
-                        googletag.pubads().refresh();
-                    });
-                });
-            }
-            // in case PBJS doesn't load
-            setTimeout(function () {
-                initAdserver();
-            }, FAILSAFE_TIMEOUT);
-    
-            googletag.cmd.push(function () {					
-                googletag.defineSlot('/83414793/prebid_test_display', div_1_sizes, 'div-1').addService(googletag.pubads());
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-            });
-    
-            googletag.cmd.push(function () {					
-                googletag.defineSlot('/83414793/prebid_test_native', div_1_sizes, 'div-2').addService(googletag.pubads());
-                googletag.pubads().enableSingleRequest();
-                googletag.enableServices();
-            });
-    
+            (function(d,h,e,v,n){
+                if(d.dht)
+                    return;
+                n=d.dht=function() {
+                    n.track?n.track.apply(n,arguments):n.queue.push(arguments)
+                }
+                n.queue=[];
+                t=h.createElement(e);
+                t.async=!0;
+                t.src=v;
+                s=h.getElementsByTagName(e)[0];
+                s.parentNode.insertBefore(t,s);
+            }(window, document, 'script', 'https://adenginestage.dailyhunt.in/dht.es6.js?timestame=' + (new Date()).getMilliseconds() ));
+            // Track
+            dht('PageView', {userId: "this"}); // Syntax: dht('<EventName>', <EventValue in JSON>);
         </script>
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!--[if lt IE 9]>
@@ -284,27 +196,48 @@
                         <div class="col-xs-12 col-sm-9 col-sm-offset-3 aboutWrapper">
                             <!-- Section Title -->
                             <div class="section-title">
-                                <h2>ADS</h2>
-                                <h2>Basic Display Prebid.js Example</h2>
-	                            <h5>Div-1</h5>
-                                <div id='div-1' style="text-align: center">
-                                    <script type='text/javascript'>
-                                        googletag.cmd.push(function () {
-                                            googletag.display('div-1');
-                                        });
-
-                                    </script>
+                                <h2>Javascript SDK</h2>
+                                <div class="col-xs-12 col-sm-4 mix category-1">
+                                    <div class="imageWrapper">
+                                        <a class="lightbox" href="#popup-1-1">
+                                            <img src="images/portfolio-1.png" alt=""><!-- Image 1 source -->
+                                            <div class="imageHover">
+                                                <div>
+                                                    <h3>Add To Cart Event</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- popup content -->
+                                        <div id="popup-1-1" class="mfp-hide popup-box">
+                                            <img src="images/portfolio-1.png" alt=""><!-- Image 1 source -->
+                                            <div style="text-align: center;">
+                                                <h3>Add To Cart Event</h3>
+                                                <button id="addtocart" type="button" class="btn btn-success">Add To Cart</button>
+                                            </div>
+                                        </div>
+                                        <!-- end popup content -->
+                                    </div>
                                 </div>
-
-                                <h2>Basic Native Prebid.js Example</h2>
-                                <h5>Div-2</h5>
-                                <div id='div-2' style="text-align: center">
-                                <script type='text/javascript'>
-                                    googletag.cmd.push(function () {
-                                        googletag.display('div-2');
-                                    });
-
-                                </script>
+                                <div class="col-xs-12 col-sm-4 mix category-2">
+                                    <div class="imageWrapper">
+                                        <a class="lightbox" href="#popup-2-2">
+                                            <img src="images/portfolio-2.png" alt="" width="256px" height="256px"><!-- Image 2 source -->
+                                            <div class="imageHover">
+                                                <div>
+                                                    <h3>Purchase Event</h3>
+                                                </div>
+                                            </div>
+                                        </a>
+                                        <!-- popup content -->
+                                        <div id="popup-2-2" class="mfp-hide popup-box">
+                                            <img src="images/portfolio-2.png" alt=""><!-- Image 2 source -->
+                                            <div style="text-align: center;">
+                                                <h3>Purchase Event</h3>
+                                                <button id="purchase" type="button" class="btn btn-success">Purchase</button>
+                                            </div>
+                                        </div>
+                                        <!-- end popup content -->
+                                    </div>
                                 </div>
 							</div><!-- end Section Title -->
                     </div><!-- end row -->
@@ -558,5 +491,21 @@
         <script src="js/theme-plugins.min.js"></script>
         <!-- Custom Scripts -->
         <script src="js/scripts.min.js"></script>
+        <script>
+            $("#addtocart").click(function(){
+                dht('AddToCart', {
+                    userId: 124134231,
+                    itemId: 2131242352134,
+                    itemTitle: "Store Manager"
+                });
+            });
+            $("#purchase").click(function(){
+                dht('Purchase', {
+                    userId: 124134231,
+                    itemId: 2131242352134,
+                    itemTitle: "Store Manager"
+                });
+            });
+        </script>
     </body>
 </html>
